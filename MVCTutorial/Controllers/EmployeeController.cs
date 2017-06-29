@@ -12,10 +12,18 @@ namespace MVCTutorial.Controllers
         // GET: Employee
         public ActionResult Details(int id)
         {
-            EmployeeContext employeeContext = new EmployeeContext();
+            EmployeeContext employeeContext = new EmployeeContext(); // esetablishes connection to DB (see EmployeeContext.cs file -> Models folder)
             Employee employee = employeeContext.Employees.Single(emp => emp.EmployeeID == id);
 
             return View(employee);
+        }
+
+        public ActionResult Index()
+        {
+            EmployeeContext employeeContext = new EmployeeContext();
+            List<Employee> employees = employeeContext.Employees.ToList();
+
+            return View(employees);
         }
     }
 }
